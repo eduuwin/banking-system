@@ -35,3 +35,10 @@ Thumbs.db
 tmp/
 temp/
 *.tmp
+
+# Netlify
+.netlify/
+functions-serve/
+
+# Local Netlify folder
+.netlify

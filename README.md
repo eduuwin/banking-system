@@ -9,6 +9,8 @@ Sistema bancário digital completo com frontend React, backend Node.js/Express, 
 
 ## 🚀 Início Rápido
 
+### Desenvolvimento Local
+
 **Quer começar agora?** Veja o **[Guia Rápido de Instalação](./QUICKSTART_PT.md)** 📖
 
 **Ou use os scripts de inicialização:**
@@ -18,6 +20,21 @@ Sistema bancário digital completo com frontend React, backend Node.js/Express, 
 
 # Windows
 start.bat
+```
+
+### Deploy em Produção (Netlify) ⚡
+
+**Hospedar no Netlify em 5 minutos:**
+
+1. 📖 **[NETLIFY_QUICKSTART.md](./NETLIFY_QUICKSTART.md)** - Início rápido
+2. 📚 **[NETLIFY_DEPLOY.md](./NETLIFY_DEPLOY.md)** - Guia completo
+
+**Deploy rápido:**
+```bash
+# 1. Criar banco no Supabase (grátis)
+# 2. Conectar repo ao Netlify
+# 3. Configurar variáveis de ambiente
+# 4. Deploy automático!
 ```
 
 ---
