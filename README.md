@@ -5,8 +5,26 @@ Sistema bancário digital completo com frontend React, backend Node.js/Express, 
 ![Status](https://img.shields.io/badge/status-active-success)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
+---
+
+## 🚀 Início Rápido
+
+**Quer começar agora?** Veja o **[Guia Rápido de Instalação](./QUICKSTART_PT.md)** 📖
+
+**Ou use os scripts de inicialização:**
+```bash
+# Linux/Mac
+./start.sh
+
+# Windows
+start.bat
+```
+
+---
+
 ## 📋 Índice
 
+- [🚀 Início Rápido](#-início-rápido)
 - [Recursos](#-recursos)
 - [Tecnologias](#-tecnologias)
 - [Pré-requisitos](#-pré-requisitos)
