@@ -1,5 +1,6 @@
 import express from 'express';
 import { authenticateToken } from '../middleware/auth.js';
+import { transactionLimiter } from '../middleware/rateLimiter.js';
 import {
   getTransactions,
   getTransaction,
@@ -11,8 +12,9 @@ import {
 
 const router = express.Router();
 
-// All routes require authentication
+// All routes require authentication and rate limiting
 router.use(authenticateToken);
+router.use(transactionLimiter);
 
 router.get('/', getTransactions);
 router.get('/stats', getStats);
