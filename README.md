@@ -4,6 +4,26 @@ Sistema bancário digital completo com frontend React, backend Node.js/Express, 
 
 ![Status](https://img.shields.io/badge/status-active-success)
 ![License](https://img.shields.io/badge/license-MIT-blue)
+![Deploy](https://img.shields.io/badge/deploy-netlify-00C7B7)
+
+---
+
+## 🌐 Deploy Online - Obter Link do Projeto Rodando
+
+**Quer o link do projeto rodando online?** Siga este guia rápido:
+
+### 📖 **[LINK_DEPLOY.md](./LINK_DEPLOY.md)** - Guia de 3 Passos (10 minutos)
+
+**Resumo:**
+1. Conectar repositório no Netlify
+2. Criar banco de dados no Supabase
+3. Configurar variáveis de ambiente
+4. ✅ Pronto! Link: `https://seu-site.netlify.app`
+
+**Mais informações:**
+- 📖 [GITHUB_DEPLOY.md](./GITHUB_DEPLOY.md) - Deploy via GitHub
+- 📖 [NETLIFY_QUICKSTART.md](./NETLIFY_QUICKSTART.md) - Netlify rápido
+- 📖 [NETLIFY_DEPLOY.md](./NETLIFY_DEPLOY.md) - Guia completo
 
 ---
 
