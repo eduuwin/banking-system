@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database
+*.sqlite
+*.db
+
+# Docker
+.docker/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Netlify
+.netlify/
+functions-serve/
+
+# Local Netlify folder
+.netlify
