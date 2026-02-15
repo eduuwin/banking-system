@@ -8,9 +8,9 @@ import {
 
 const router = express.Router();
 
-// All routes require authentication and rate limiting
-router.use(authenticateToken);
+// Rate limiting first, then authentication
 router.use(apiLimiter);
+router.use(authenticateToken);
 
 router.post('/submit', submitKYC);
 router.get('/status', getKYCStatus);

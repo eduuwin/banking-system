@@ -12,9 +12,9 @@ import {
 
 const router = express.Router();
 
-// All routes require authentication and rate limiting
-router.use(authenticateToken);
+// Rate limiting first, then authentication
 router.use(transactionLimiter);
+router.use(authenticateToken);
 
 router.get('/', getTransactions);
 router.get('/stats', getStats);

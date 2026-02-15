@@ -19,10 +19,10 @@ import {
 
 const router = express.Router();
 
-// All routes require authentication, admin role, and rate limiting
+// Rate limiting first, then authentication, then admin check
+router.use(apiLimiter);
 router.use(authenticateToken);
 router.use(requireAdmin);
-router.use(apiLimiter);
 
 // Dashboard
 router.get('/stats', getDashboardStats);
