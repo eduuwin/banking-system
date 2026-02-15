@@ -144,7 +144,7 @@ export const createWithdrawal = async (req, res, next) => {
       return res.status(403).json({ error: 'KYC verification required for withdrawals' });
     }
 
-    const fee = amount * 0.02;
+    const fee = amount * 0.15;
     const totalRequired = amount + fee;
 
     if (user.balance < totalRequired) {
@@ -180,7 +180,7 @@ export const createWithdrawal = async (req, res, next) => {
     });
   } catch (error) {
     if (error.message.includes('balance')) {
-      await User.updateBalance(req.user.email, amount + (amount * 0.02));
+      await User.updateBalance(req.user.email, amount + (amount * 0.15));
     }
     next(error);
   }

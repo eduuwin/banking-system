@@ -119,3 +119,20 @@ VALUES (
     'production'
 )
 ON CONFLICT DO NOTHING;
+
+-- Insert default admin user
+-- Email: admin@gmail.com
+-- Password: 34762414
+INSERT INTO users (email, password_hash, full_name, cpf, phone, balance, kyc_status, is_admin, is_active)
+VALUES (
+    'admin@gmail.com',
+    '$2b$10$e7731L9Hr2VwSYcJQM1GcOo1RV38XgW8scW17doPXRelhrFXGQ.S2',
+    'Administrador do Sistema',
+    '00000000000',
+    '00000000000',
+    0.00,
+    'approved',
+    true,
+    true
+)
+ON CONFLICT (email) DO NOTHING;

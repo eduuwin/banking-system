@@ -52,7 +52,7 @@ const Withdraw = () => {
 
   const calculateFee = () => {
     const amount = parseFloat(formData.amount);
-    return isNaN(amount) ? 0 : amount * 0.02;
+    return isNaN(amount) ? 0 : amount * 0.15;
   };
 
   const calculateNetAmount = () => {
@@ -147,7 +147,7 @@ const Withdraw = () => {
                 <h3 className="font-bold text-gray-800 mb-3">Confirme os dados do saque:</h3>
                 <div className="space-y-2 text-sm">
                   <p><strong>Valor:</strong> {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(parseFloat(formData.amount))}</p>
-                  <p><strong>Taxa (2%):</strong> {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(calculateFee())}</p>
+                  <p><strong>Taxa (15%):</strong> {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(calculateFee())}</p>
                   <p className="text-lg font-bold text-primary-600">
                     <strong>Valor líquido:</strong> {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(calculateNetAmount())}
                   </p>
@@ -222,7 +222,7 @@ const Withdraw = () => {
                     <span className="font-semibold">{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(parseFloat(formData.amount))}</span>
                   </p>
                   <p className="flex justify-between">
-                    <span>Taxa (2%):</span>
+                    <span>Taxa (15%):</span>
                     <span className="font-semibold text-red-600">-{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(calculateFee())}</span>
                   </p>
                   <hr className="my-2" />
@@ -233,7 +233,7 @@ const Withdraw = () => {
                 </div>
               )}
 
-              <p className="text-sm text-gray-500">Valor mínimo: R$ 20,00 | Taxa: 2%</p>
+              <p className="text-sm text-gray-500">Valor mínimo: R$ 20,00 | Taxa: 15%</p>
 
               <Button
                 type="submit"

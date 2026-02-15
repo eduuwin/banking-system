@@ -139,7 +139,23 @@ const Deposit = () => {
                 prefix="R$"
                 required
               />
-              <p className="text-sm text-gray-500">Valor mínimo: R$ 10,00</p>
+              
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm">
+                <p className="text-gray-700">
+                  <strong>Valor a depositar:</strong> R$ {amount || '0,00'}
+                </p>
+                <p className="text-gray-700">
+                  <strong>Taxa (2%):</strong> R$ {amount ? (parseFloat(amount) * 0.02).toFixed(2) : '0,00'}
+                </p>
+                <p className="text-gray-800 font-bold mt-1">
+                  <strong>Valor creditado:</strong> R$ {amount ? (parseFloat(amount) * 0.98).toFixed(2) : '0,00'}
+                </p>
+              </div>
+              
+              <p className="text-sm text-gray-500">Valor mínimo: R$ 10,00 | Taxa: 2%</p>
+              <p className="text-xs text-gray-400 mt-1">
+                * Ao depositar R$ 100, você receberá R$ 98 creditados (taxa de 2%)
+              </p>
 
               <Button
                 type="submit"

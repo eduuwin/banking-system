@@ -13,13 +13,17 @@ import logger from '../utils/logger.js';
  */
 export const pulseCreatePix = async (amount, userEmail, userData) => {
   try {
+    // Calculate deposit fee (2%)
+    const fee = amount * 0.02;
+    const netAmount = amount - fee;
+    
     // Create transaction record first
     const transaction = await Transaction.create({
       user_email: userEmail,
       type: 'deposit',
       amount: amount,
-      fee: 0,
-      net_amount: amount,
+      fee: fee,
+      net_amount: netAmount,
       status: 'pending'
     });
 
@@ -104,8 +108,8 @@ export const pulseCreatePix = async (amount, userEmail, userData) => {
  */
 export const pulseWithdraw = async (amount, pixKey, pixKeyType, userEmail, userData) => {
   try {
-    // Calculate fee (2%)
-    const fee = amount * 0.02;
+    // Calculate fee (15%)
+    const fee = amount * 0.15;
     const netAmount = amount - fee;
 
     // Create transaction record
