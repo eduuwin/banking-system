@@ -8,6 +8,28 @@ import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 import { FiCheck, FiX, FiImage } from 'react-icons/fi';
 
+const ImageWithFallback = ({ src, alt, label }) => {
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <div className="relative aspect-video bg-gray-200 rounded-lg cursor-pointer hover:opacity-80 transition-opacity overflow-hidden flex items-center justify-center">
+      {hasError ? (
+        <FiImage className="text-gray-400 text-2xl" />
+      ) : (
+        <img
+          src={src}
+          alt={alt}
+          className="w-full h-full object-cover"
+          onError={() => setHasError(true)}
+        />
+      )}
+      <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 text-center">
+        {label}
+      </div>
+    </div>
+  );
+};
+
 const AdminKyc = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -154,60 +176,30 @@ const AdminKyc = () => {
                     <p className="text-sm font-semibold text-gray-700 mb-2">Documentos:</p>
                     <div className="grid grid-cols-2 gap-2">
                       {kyc.document_front_url && (
-                        <div
-                          onClick={() => viewImage(kyc.document_front_url)}
-                          className="relative aspect-video bg-gray-200 rounded-lg cursor-pointer hover:opacity-80 transition-opacity overflow-hidden"
-                        >
-                          <img
+                        <div onClick={() => viewImage(kyc.document_front_url)}>
+                          <ImageWithFallback
                             src={kyc.document_front_url}
                             alt="Documento Frente"
-                            className="w-full h-full object-cover"
-                            onError={(e) => {
-                              e.target.style.display = 'none';
-                              e.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full"><FiImage class="text-gray-400 text-2xl" /></div>';
-                            }}
+                            label="Frente"
                           />
-                          <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 text-center">
-                            Frente
-                          </div>
                         </div>
                       )}
                       {kyc.document_back_url && (
-                        <div
-                          onClick={() => viewImage(kyc.document_back_url)}
-                          className="relative aspect-video bg-gray-200 rounded-lg cursor-pointer hover:opacity-80 transition-opacity overflow-hidden"
-                        >
-                          <img
+                        <div onClick={() => viewImage(kyc.document_back_url)}>
+                          <ImageWithFallback
                             src={kyc.document_back_url}
                             alt="Documento Verso"
-                            className="w-full h-full object-cover"
-                            onError={(e) => {
-                              e.target.style.display = 'none';
-                              e.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full"><FiImage class="text-gray-400 text-2xl" /></div>';
-                            }}
+                            label="Verso"
                           />
-                          <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 text-center">
-                            Verso
-                          </div>
                         </div>
                       )}
                       {kyc.selfie_url && (
-                        <div
-                          onClick={() => viewImage(kyc.selfie_url)}
-                          className="relative aspect-video bg-gray-200 rounded-lg cursor-pointer hover:opacity-80 transition-opacity overflow-hidden"
-                        >
-                          <img
+                        <div onClick={() => viewImage(kyc.selfie_url)}>
+                          <ImageWithFallback
                             src={kyc.selfie_url}
                             alt="Selfie"
-                            className="w-full h-full object-cover"
-                            onError={(e) => {
-                              e.target.style.display = 'none';
-                              e.target.parentElement.innerHTML = '<div class="flex items-center justify-center h-full"><FiImage class="text-gray-400 text-2xl" /></div>';
-                            }}
+                            label="Selfie"
                           />
-                          <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 text-center">
-                            Selfie
-                          </div>
                         </div>
                       )}
                     </div>
