@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
 import Button from '../components/Button';
 import Input from '../components/Input';
-import { FiArrowLeft, FiCopy } from 'react-icons/fi';
 
 const QrCode = () => {
   const { user } = useAuth();
@@ -55,7 +54,7 @@ const QrCode = () => {
             onClick={() => navigate('/')}
             className="flex items-center text-white mb-4 hover:text-primary-100"
           >
-            <FiArrowLeft className="mr-2" /> Voltar
+            ← Voltar
           </button>
           <h1 className="text-3xl font-bold">Gerar QR Code</h1>
           <p className="text-primary-100 mt-2">Receba pagamentos via PIX</p>

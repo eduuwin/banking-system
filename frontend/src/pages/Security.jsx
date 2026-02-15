@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
-import { changePassword } from '../services/user';
+import { changePassword } from '../services/auth';
 import Button from '../components/Button';
 import Input from '../components/Input';
-import { FiArrowLeft, FiLock, FiShield, FiCheck } from 'react-icons/fi';
 
 const Security = () => {
   const { user } = useAuth();
@@ -115,7 +114,7 @@ const Security = () => {
             onClick={() => navigate('/profile')}
             className="flex items-center text-white mb-4 hover:text-primary-100"
           >
-            <FiArrowLeft className="mr-2" /> Voltar
+            ← Voltar
           </button>
           <div className="flex items-center gap-3">
             <FiShield className="text-4xl" />
@@ -142,7 +141,7 @@ const Security = () => {
 
           {success && (
             <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded-lg flex items-center gap-2">
-              <FiCheck />
+              ✓
               {success}
             </div>
           )}
@@ -226,7 +225,7 @@ const Security = () => {
           <ul className="space-y-2">
             {securityTips.map((tip, index) => (
               <li key={index} className="flex items-start gap-2 text-sm text-gray-700">
-                <FiCheck className="text-green-600 mt-0.5 flex-shrink-0" />
+                ✓
                 <span>{tip}</span>
               </li>
             ))}

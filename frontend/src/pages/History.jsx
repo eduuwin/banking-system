@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
-import { getTransactions } from '../services/transaction';
+import { getTransactions } from '../services/transactions';
 import TransactionItem from '../components/TransactionItem';
 import Button from '../components/Button';
-import { FiArrowLeft, FiFilter } from 'react-icons/fi';
 
 const History = () => {
   const { user } = useAuth();
@@ -102,7 +101,7 @@ const History = () => {
             onClick={() => navigate('/')}
             className="flex items-center text-white mb-4 hover:text-primary-100"
           >
-            <FiArrowLeft className="mr-2" /> Voltar
+            ← Voltar
           </button>
           <div className="flex justify-between items-center">
             <div>
@@ -113,7 +112,7 @@ const History = () => {
               onClick={() => setShowFilters(!showFilters)}
               className="bg-white/20 p-3 rounded-lg hover:bg-white/30 transition-colors"
             >
-              <FiFilter className="text-xl" />
+              ⋮
             </button>
           </div>
         </div>

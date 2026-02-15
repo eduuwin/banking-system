@@ -2,11 +2,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
-import { getBalance } from '../services/account';
-import { createWithdrawal } from '../services/transaction';
+import { getBalance } from '../services/auth';
+import { createWithdrawal } from '../services/transactions';
 import Button from '../components/Button';
 import Input from '../components/Input';
-import { FiArrowLeft, FiAlertCircle } from 'react-icons/fi';
 
 const Withdraw = () => {
   const { user } = useAuth();
@@ -116,7 +115,7 @@ const Withdraw = () => {
             onClick={() => navigate('/')}
             className="flex items-center text-white mb-4 hover:text-primary-100"
           >
-            <FiArrowLeft className="mr-2" /> Voltar
+            ← Voltar
           </button>
           <h1 className="text-3xl font-bold">Sacar</h1>
           <p className="text-primary-100 mt-2">Envie dinheiro para sua chave PIX</p>

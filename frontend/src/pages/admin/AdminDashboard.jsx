@@ -5,7 +5,6 @@ import { useAuth } from '../../contexts/AuthContext';
 import { adminGetStats, adminGetTransactions, adminGetKYCs } from '../../services/transactions';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
-import { FiUsers, FiDollarSign, FiTrendingUp } from 'react-icons/fi';
 
 const AdminDashboard = () => {
   const { user } = useAuth();

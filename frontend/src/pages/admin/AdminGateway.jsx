@@ -6,7 +6,6 @@ import { adminGetGatewayConfig, adminUpdateGatewayConfig } from '../../services/
 import Card from '../../components/Card';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import { FiCheck, FiAlertCircle } from 'react-icons/fi';
 
 const AdminGateway = () => {
   const { user } = useAuth();

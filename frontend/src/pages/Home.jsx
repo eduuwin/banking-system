@@ -2,11 +2,10 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
-import { getBalance } from '../services/account';
-import { getTransactions } from '../services/transaction';
+import { getBalance } from '../services/auth';
+import { getTransactions } from '../services/transactions';
 import Button from '../components/Button';
 import TransactionItem from '../components/TransactionItem';
-import { FiArrowDownCircle, FiArrowUpCircle, FiSend, FiMaximize2 } from 'react-icons/fi';
 
 const Home = () => {
   const { user } = useAuth();

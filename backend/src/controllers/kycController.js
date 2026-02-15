@@ -22,8 +22,8 @@ export const submitKYC = async (req, res, next) => {
       return res.status(400).json({ error: 'All required fields must be provided' });
     }
 
-    if (!['rg', 'cnh', 'passport'].includes(document_type)) {
-      return res.status(400).json({ error: 'Invalid document type. Must be: rg, cnh, or passport' });
+    if (!['rg', 'cnh'].includes(document_type)) {
+      return res.status(400).json({ error: 'Invalid document type. Must be: rg or cnh' });
     }
 
     if (!validateCPF(cpf)) {

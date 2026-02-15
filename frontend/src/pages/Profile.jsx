@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
-import { updateProfile } from '../services/user';
+import { updateProfile } from '../services/auth';
 import Button from '../components/Button';
 import Input from '../components/Input';
-import { FiArrowLeft, FiUser, FiMail, FiPhone, FiCreditCard } from 'react-icons/fi';
 
 const Profile = () => {
   const { user, setUser } = useAuth();
@@ -79,7 +78,7 @@ const Profile = () => {
             onClick={() => navigate('/')}
             className="flex items-center text-white mb-4 hover:text-primary-100"
           >
-            <FiArrowLeft className="mr-2" /> Voltar
+            ← Voltar
           </button>
           <h1 className="text-3xl font-bold">Meu Perfil</h1>
           <p className="text-primary-100 mt-2">Gerencie suas informações pessoais</p>

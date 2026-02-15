@@ -2,11 +2,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
-import { generatePixDeposit, checkPixPayment } from '../services/pix';
+import { createDeposit, getTransaction } from '../services/transactions';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import QRCodeDisplay from '../components/QRCodeDisplay';
-import { FiArrowLeft, FiCheck } from 'react-icons/fi';
 
 const Deposit = () => {
   const { user } = useAuth();
@@ -31,11 +30,11 @@ const Deposit = () => {
 
   useEffect(() => {
     let interval;
-    if (polling && pixData) {
+    if (polling && pixData && pixData.transaction) {
       interval = setInterval(async () => {
         try {
-          const status = await checkPixPayment(pixData.txid);
-          if (status.status === 'completed') {
+          const result = await getTransaction(pixData.transaction.id);
+          if (result.transaction.status === 'completed') {
             setPaymentStatus('completed');
             setPolling(false);
             setTimeout(() => navigate('/'), 2000);
@@ -67,11 +66,11 @@ const Deposit = () => {
 
     setLoading(true);
     try {
-      const data = await generatePixDeposit(amountValue);
+      const data = await createDeposit(amountValue);
       setPixData(data);
       setPolling(true);
     } catch (err) {
-      setError(err.response?.data?.message || 'Erro ao gerar PIX. Tente novamente.');
+      setError(err.response?.data?.error || 'Erro ao gerar PIX. Tente novamente.');
     } finally {
       setLoading(false);
     }
@@ -92,7 +91,7 @@ const Deposit = () => {
       >
         <div className="bg-white rounded-2xl shadow-xl p-8 text-center max-w-md">
           <div className="bg-green-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-            <FiCheck className="text-green-600 text-4xl" />
+            ✓
           </div>
           <h2 className="text-2xl font-bold text-gray-800 mb-2">Depósito Confirmado!</h2>
           <p className="text-gray-600">Seu saldo foi atualizado com sucesso.</p>
@@ -114,7 +113,7 @@ const Deposit = () => {
             onClick={() => navigate('/')}
             className="flex items-center text-white mb-4 hover:text-primary-100"
           >
-            <FiArrowLeft className="mr-2" /> Voltar
+            ← Voltar
           </button>
           <h1 className="text-3xl font-bold">Depositar</h1>
           <p className="text-primary-100 mt-2">Adicione fundos à sua conta via PIX</p>

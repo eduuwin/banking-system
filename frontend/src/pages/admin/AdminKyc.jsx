@@ -6,7 +6,6 @@ import { adminGetKYCs, adminApproveKYC, adminRejectKYC } from '../../services/tr
 import Card from '../../components/Card';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
-import { FiCheck, FiX, FiImage } from 'react-icons/fi';
 
 const ImageWithFallback = ({ src, alt, label }) => {
   const [hasError, setHasError] = useState(false);
