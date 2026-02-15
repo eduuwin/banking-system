@@ -42,8 +42,8 @@ start.bat
 ### Para Usuários:
 - ✅ Registro e autenticação com JWT
 - ✅ Dashboard com saldo e transações recentes
-- ✅ Depósitos via PIX com QR Code
-- ✅ Saques para chave PIX (com taxa de 2%)
+- ✅ Depósitos via PIX com QR Code (taxa de 2%)
+- ✅ Saques para chave PIX (com taxa de 15%)
 - ✅ Transferências PIX entre usuários
 - ✅ Geração de QR Code para receber pagamentos
 - ✅ Histórico completo de transações
@@ -157,11 +157,12 @@ psql -U postgres -d nibanky -f database/init.sql
    - Gere o QR Code PIX
    - Pague usando seu app bancário
    - Aguarde confirmação automática
+   - **Taxa:** 2% do valor depositado
 
 3. **Fazer um Saque:**
    - Clique em "Sacar"
    - Digite o valor e a chave PIX
-   - Confirme a operação (taxa de 2%)
+   - Confirme a operação (taxa de 15%)
    - Aguarde o processamento
 
 4. **Transferir via PIX:**
@@ -170,7 +171,11 @@ psql -U postgres -d nibanky -f database/init.sql
    - Digite o valor e descrição
    - Confirme a transferência
 
-### Administrador
+### Usuário Administrador
+
+**Login padrão:**
+- **Email:** admin@gmail.com
+- **Senha:** 34762414
 
 1. **Acessar Painel Admin:**
    - Faça login com conta admin
@@ -185,6 +190,48 @@ psql -U postgres -d nibanky -f database/init.sql
    - Acesse "Admin" > "Usuários"
    - Visualize, ative/desative usuários
    - Ajuste saldos se necessário
+
+---
+
+## 💰 Taxas e Limites
+
+### Depósitos
+- **Valor mínimo:** R$ 10,00
+- **Taxa:** 2% do valor depositado
+- **Exemplo:** Depósito de R$ 100 → Você recebe R$ 98 creditados
+
+### Saques
+- **Valor mínimo:** R$ 20,00
+- **Taxa:** 15% do valor solicitado
+- **Exemplo:** Saque de R$ 100 → Taxa R$ 15 → Total debitado R$ 115 → Você recebe R$ 85
+
+### Transferências PIX
+- **Valor mínimo:** R$ 1,00
+- **Taxa:** Gratuito entre usuários do sistema
+
+---
+
+## 🔐 Credenciais de Admin
+
+Para acessar o painel administrativo:
+- **URL:** http://localhost:3000/admin
+- **Email:** admin@gmail.com
+- **Senha:** 34762414
+- **KYC:** Pré-aprovado
+
+**Importante:** Altere a senha em produção!
+
+---
+
+## 📋 Documentação Adicional
+
+- 🚀 [Guia Rápido](./QUICKSTART_PT.md) - Como começar em 5 minutos
+- ✅ [Checklist de Erros](./CHECKLIST_ERRORS.md) - Detectar e corrigir problemas
+- 🌐 [Guia de Hospedagem](./DEPLOYMENT.md) - Deploy em produção
+- 🔌 [API Documentation](./API_DOCUMENTATION.md) - Referência completa da API
+- 🏗️ [Arquitetura](./ARCHITECTURE.md) - Estrutura técnica do sistema
+
+---
 
 ## 📁 Estrutura do Projeto
 
@@ -313,9 +360,9 @@ FRONTEND_URL=http://localhost:3000
 - Status: pending, submitted, approved, rejected
 
 ### Transações PIX
-- Depósitos via QR Code
-- Saques com taxa de 2%
-- Transferências entre usuários
+- Depósitos via QR Code (taxa de 2%)
+- Saques com taxa de 15%
+- Transferências entre usuários (gratuito)
 - Integração com Pulse VIP Gateway
 
 ### Regras de Negócio
