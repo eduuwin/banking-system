@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: nibanky_postgres
+    environment:
+      POSTGRES_DB: nibanky
+      POSTGRES_USER: nibanky_user
+      POSTGRES_PASSWORD: nibanky_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nibanky_user -d nibanky"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: nibanky_backend
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: postgresql://nibanky_user:nibanky_pass@postgres:5432/nibanky
+      JWT_SECRET: your_jwt_secret_change_in_production
+      JWT_EXPIRES_IN: 7d
+      PULSE_CLIENT_ID: e1c98954cc404cbcb2868af9b40c7a33
+      PULSE_API_KEY: 4XJoHefFKOr593cnD5_xCto1FfzbQYtvfS2Il6aPAY2nyt8Vm-Qi_NoZ8VhyVocfuCloLEfNBb-7sKjGxFH-0A
+      PULSE_BASE_URL: https://pulsepayment.app.br
+      PULSE_WEBHOOK_URL: http://localhost:5000/api/webhook/pulse
+      PORT: 5000
+      NODE_ENV: production
+      FRONTEND_URL: http://localhost:3000
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: nibanky_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      VITE_API_URL: http://localhost:5000
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
